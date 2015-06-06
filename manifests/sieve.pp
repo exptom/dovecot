@@ -6,7 +6,9 @@ class dovecot::sieve (
   ) {
   include dovecot
 
-  file { '/var/lib/dovecot/sieve':
+  file { ['/var/lib/dovecot/sieve',
+          '/var/lib/dovecot/sieve/before',
+          '/var/lib/dovecot/sieve/after']:
     ensure  => directory,
     owner   => $username,
     group   => $groupname,
@@ -37,8 +39,8 @@ class dovecot::sieve (
     changes     => [
       "set plugin/sieve '~/.dovecot.sieve'",
       "set plugin/sieve_dir '~/sieve'",
-      "set plugin/sieve_global_path '/var/lib/dovecot/sieve/default.sieve'",
-      "set plugin/sieve_global_dir '/var/lib/dovecot/sieve/'",
+      "set plugin/sieve_before '/var/lib/dovecot/sieve/before'",
+      "set plugin/sieve_after '/var/lib/dovecot/sieve/after'",
       ],
   }
 }
