@@ -12,7 +12,6 @@ class dovecot::managesieved {
   package { $package_name :
       ensure  => installed,
       before  => Exec['dovecot'],
-      require => Package['dovecot'],
       alias   => 'dovecot-managesieved',
   }
 
